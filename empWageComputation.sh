@@ -1,7 +1,5 @@
 #!/bin/bash
-
 echo "Welcome to Employee Wage Computation program"
-
 isPresent=1
 randomCheck=$(( 1 + RANDOM % 2 ));
 if [ $isPresent -eq $randomCheck ];
@@ -18,7 +16,7 @@ salary=0;
 totalSalary=0;
 empName=emp
 echo "calculate wages for a Month"
-echo "DailyWages		TotalWages"
+echo "Day		DailyWages		TotalWages"
 getWorkHours () {
 days=$1
 empHrs=$2
@@ -35,8 +33,8 @@ do
 	esac
 	salary=$(( $empHrs * $wagePerHour ))
 	totalSalary=$(( $totalSalary + $salary ))
+	echo "Day $days		$salary			$totalSalary"
 	((days++))
-	echo "$salary			$totalSalary"
 done
 }
 
