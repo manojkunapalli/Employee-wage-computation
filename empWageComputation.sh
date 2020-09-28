@@ -1,8 +1,9 @@
 #!/bin/bash
+
 echo "Welcome to Employee Wage Computation program"
 
 isPresent=1
-randomCheck=$(( RANDOM%2 ));
+randomCheck=$(( 1 + RANDOM % 2 ));
 if [ $isPresent -eq $randomCheck ];
 then
 		echo "Employee is present"
@@ -10,22 +11,33 @@ else
 		echo "Employee is not present"
 fi
 
-#echo "calculate Daily Fulltime employee wages"
+isFullTimeEmp=1;
+isPartTimeEmp=2;
 
-wagePerHour=20
-hoursPerDay=8
+wagePerHour=20;
+salary=0;
+totalSalary=0;
 
-wagePerDay=$(( $wagePerHour * $hoursPerDay ))
+empName=emp
 
-#echo "Fulltime employee daily wages = $wagePerDay"
+echo "calculate wages"
 
-echo "calculate Part time Employee & wage"
+read -p "enter the number of working days = " numDays
 
-partTimeHoursPerDay=4
+for (( days=1; days<=$numDays; days++ ));
+do
+	employeeCheck=$(( 1 + RANDOM % 2 ));
+	case $employeeCheck in
+		$isFullTimeEmp)
+			empName=FullTimeEmployee
+			empHrs=8;;
+		$isPartTimeEmp)
+			empName=PartTimeEmployee
+			empHrs=4;;
+	esac
+	salary=$(( $empHrs * $wagePerHour ))
+	echo "salary of $empName on the day $days is $salary"
+	totalSalary=$(( $totalSalary + $salary ))
+done
 
-PartTimeWagePerDay=$(( $wagePerHour * $partTimeHoursPerDay ))
-
-echo "Part Time employee daily wages = $PartTimeWagePerDay"
-
-
-
+echo "total Salary = $totalSalary"
