@@ -13,15 +13,12 @@ fi
 
 isFullTimeEmp=1;
 isPartTimeEmp=2;
-
 wagePerHour=20;
 salary=0;
 totalSalary=0;
-
 empName=emp
-
 echo "calculate wages for a Month"
-
+echo "DailyWages		TotalWages"
 getWorkHours () {
 days=$1
 empHrs=$2
@@ -37,10 +34,9 @@ do
 			empHrs=$(( $empHrs + 4 ));;
 	esac
 	salary=$(( $empHrs * $wagePerHour ))
-#	echo "salary of $empName on the day $days is $salary"
-#	echo -e
 	totalSalary=$(( $totalSalary + $salary ))
 	((days++))
+	echo "$salary			$totalSalary"
 done
 }
 
