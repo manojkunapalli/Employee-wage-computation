@@ -22,11 +22,9 @@ empName=emp
 
 echo "calculate wages for a Month"
 
-#read -p "enter the number of working days = " numDays
-
-days=1
-empHrs=0
-#for (( days=1; days<=$numDays; days++ ));
+getWorkHours () {
+days=$1
+empHrs=$2
 while [ $days -le 20 ] || [ $empHrs -le 100 ]
 do
 	employeeCheck=$(( 1 + RANDOM % 2 ));
@@ -39,10 +37,15 @@ do
 			empHrs=$(( $empHrs + 4 ));;
 	esac
 	salary=$(( $empHrs * $wagePerHour ))
-	echo "salary of $empName on the day $days is $salary"
-	echo -e
+#	echo "salary of $empName on the day $days is $salary"
+#	echo -e
 	totalSalary=$(( $totalSalary + $salary ))
 	((days++))
 done
+}
 
+days=1
+empHrs=0
+getWorkHours $days $empHrs
 echo "total Salary = $totalSalary"
+echo "working hours = " $empHrs
